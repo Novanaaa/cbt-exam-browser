@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:intl/intl.dart';
+import 'package:kiosk_mode/kiosk_mode.dart';
 
 class WebView extends StatefulWidget {
   const WebView({super.key, required this.url});
@@ -70,26 +71,31 @@ class _WebViewState extends State<WebView> {
               },
               child: const Text("Exit", style: TextStyle(color: Colors.red))),
           const SizedBox(width: 5),
-          SizedBox(
-            width: 45,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                    padding: const WidgetStatePropertyAll(
-                        EdgeInsets.only(bottom: 6, top: 6)),
-                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    )),
-                    backgroundColor:
-                        const WidgetStatePropertyAll(Colors.white)),
-                onPressed: () {
-                  _webViewController?.goTo(
-                      historyItem: WebHistoryItem(url: WebUri(widget.url)));
-                },
-                child: const Icon(
-                  Icons.home,
-                  color: Colors.black,
-                )),
+          GestureDetector(
+            onLongPress: () async {
+              await startKioskMode();
+            },
+            child: SizedBox(
+              width: 45,
+              child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: const WidgetStatePropertyAll(
+                          EdgeInsets.only(bottom: 6, top: 6)),
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                      backgroundColor:
+                          const WidgetStatePropertyAll(Colors.white)),
+                  onPressed: () {
+                    _webViewController?.goTo(
+                        historyItem: WebHistoryItem(url: WebUri(widget.url)));
+                  },
+                  child: const Icon(
+                    Icons.home,
+                    color: Colors.black,
+                  )),
+            ),
           ),
           const SizedBox(width: 5),
           SizedBox(
