@@ -31,6 +31,7 @@ class _WebViewState extends State<WebView> {
     iframeAllowFullscreen: true,
     upgradeKnownHostsToHTTPS: true,
     transparentBackground: true,
+    userAgent: "cbt-exam-browser",
   );
 
   @override
