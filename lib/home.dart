@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'webview.dart';
+import 'scan_qr.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -31,7 +32,7 @@ class _HomeState extends State<Home> {
               child: const Text('ENTER'),
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (BuildContext context) =>
                         WebView(url: _textFieldController.text)));
               },
@@ -42,7 +43,10 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Future<void> scanQR() async {}
+  void scanQR(BuildContext context) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (BuildContext context) => const ScanQr()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +102,7 @@ class _HomeState extends State<Home> {
                   height: 10,
                 ),
                 ElevatedButton(
-                    onPressed: scanQR,
+                    onPressed: () => scanQR(context),
                     child: const Padding(
                       padding: EdgeInsets.only(
                           left: 80, right: 80, top: 14, bottom: 14),
