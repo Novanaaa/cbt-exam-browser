@@ -67,6 +67,7 @@ class _WebViewState extends State<WebView> {
                           side: const BorderSide(color: Colors.red))),
                   backgroundColor: const WidgetStatePropertyAll(Colors.black)),
               onPressed: () {
+                stopKioskMode();
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (BuildContext context) => const Home()));
               },
