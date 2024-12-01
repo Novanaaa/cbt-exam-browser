@@ -43,16 +43,13 @@ class _WebViewState extends State<WebView> {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-          body: appWebView(),
-          bottomNavigationBar: Container(
-            color: Colors.black,
-            padding: const EdgeInsets.all(7),
-            child: bottomNavigationList(),
-          )),
-    );
+    return Scaffold(
+        body: appWebView(),
+        bottomNavigationBar: Container(
+          color: Colors.black,
+          padding: const EdgeInsets.all(7),
+          child: bottomNavigationList(),
+        ));
   }
 
   Opacity bottomNavigationList() {
